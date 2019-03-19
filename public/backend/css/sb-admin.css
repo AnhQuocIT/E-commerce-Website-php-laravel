@@ -10724,4 +10724,8 @@ body.sidebar-toggled footer.sticky-footer {
   }
 }
 
+#chooseImg {
+  display: none;
+}
+
 

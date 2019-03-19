@@ -72,33 +72,33 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="txtMemberName">Tên khách hàng</label>
-                        <input type="text" name="txtMemberName" class="form-control" id="txtMemberName">
+                        <label for="txtGuestName">Tên khách hàng</label>
+                        <input type="text" name="txtGuestName" class="form-control" id="txtGuestName">
                     </div>
                     <div class="form-group">
-                        <label for="txtMemberSex">Giới tính</label>
+                        <label for="txtGuestSex">Giới tính</label>
                         &nbsp;&nbsp;
                         <div class="form-check-inline">
                           <label class="form-check-label">
-                            <input type="radio" name="txtMemberSex" class="form-check-input" id="txtMemberName">Nam
+                            <input type="radio" name="txtGuestSex" class="form-check-input" id="txtGuestSex">Nam
                           </label>
                           &nbsp;&nbsp;
                           <label class="form-check-label">
-                            <input type="radio" name="txtMemberSex" class="form-check-input" id="txtMemberName">Nữ
+                            <input type="radio" name="txtGuestSex" class="form-check-input" id="txtGuestSex">Nữ
                           </label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtMemberEmail">Email</label>
-                        <input type="text" name="txtMemberEmail" class="form-control" id="txtMemberEmail">
+                        <label for="txtGuestEmail">Email</label>
+                        <input type="text" name="txtGuestEmail" class="form-control" id="txtGuestEmail">
                     </div>
                     <div class="form-group">
-                        <label for="txtMemberAddress">Địa chỉ</label>
-                        <input type="text" name="txtMemberAddress" class="form-control" id="txtMemberAddress">
+                        <label for="txtGuestAddress">Địa chỉ</label>
+                        <input type="text" name="txtGuestAddress" class="form-control" id="txtGuestAddress">
                     </div>
                     <div class="form-group">
-                        <label for="txtMemberPhone">Điện thoại</label>
-                        <input type="text" name="txtMemberPhone" class="form-control" id="txtMemberPhone">
+                        <label for="txtGuestPhone">Điện thoại</label>
+                        <input type="text" name="txtGuestPhone" class="form-control" id="txtGuestPhone">
                     </div>
                 </div>
                 <!-- Modal footer -->

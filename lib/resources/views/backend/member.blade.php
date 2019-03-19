@@ -42,18 +42,26 @@
                         </tr>
                     </tfoot>
                     <tbody>
+                        @foreach($memberList as $member)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
+                            <td>{{$member->name}}</td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
-                                <a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xóa</a>
+                                @if($member->gender == true)
+                                    Nam
+                                @else
+                                    Nữ
+                                @endif
+                            </td>
+                            <td>{{$member->email}}</td>
+                            <td>{{$member->address}}</td>
+                            <td>{{$member->phone_number}}</td>
+                            <td>{{$member->password}}</td>
+                            <td>
+                                <a href="{{asset('admin/member/edit/'.$member->id)}}" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
+                                <a href="{{asset('admin/member/delete/.$member->id')}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xóa</a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -62,55 +70,4 @@
     </div>
 </div>
 <!-- /.container-fluid -->
-<!-- The Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form action="#" method="post" accept-charset="utf-8">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Thành viên</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="txtMemberName">Tên thành viên</label>
-                        <input type="text" name="txtMemberName" class="form-control" id="txtMemberName">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtMemberSex">Giới tính</label>
-                        &nbsp;&nbsp;
-                        <div class="form-check-inline">
-                          <label class="form-check-label">
-                            <input type="radio" name="txtMemberSex" class="form-check-input" id="txtMemberName">Nam
-                          </label>
-                          &nbsp;&nbsp;
-                          <label class="form-check-label">
-                            <input type="radio" name="txtMemberSex" class="form-check-input" id="txtMemberName">Nữ
-                          </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtMemberEmail">Email</label>
-                        <input type="text" name="txtMemberEmail" class="form-control" id="txtMemberEmail">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtMemberAddress">Địa chỉ</label>
-                        <input type="text" name="txtMemberAddress" class="form-control" id="txtMemberAddress">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtMemberPhone">Điện thoại</label>
-                        <input type="text" name="txtMemberPhone" class="form-control" id="txtMemberPhone">
-                    </div>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" >Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 @stop

@@ -16,12 +16,10 @@
         <!-- Custom styles for this template-->
         <link href="css/sb-admin.css" rel="stylesheet">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-        
     </head>
     <body id="page-top">
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-            <a class="navbar-brand mr-1" href="index.html">Admin Page</a>
+            <a class="navbar-brand mr-1" href="{{asset('admin/home')}}">Admin Page</a>
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
             </button>
@@ -110,10 +108,21 @@
                         <a class="dropdown-item" href="{{asset('admin/slide')}}">Slide - Banner</a>
                     </div>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="{{asset('admin/category')}}">
                     <i class="fas fa-fw fa-list-ul"></i>
                     <span>Danh mục sản phẩm</span></a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-fw fa-list-ul"></i>
+                    <span>Danh mục sản phẩm</span></a>
+                    <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                        <a class="dropdown-item" href="{{asset('admin/product-type')}}">Loại sản phẩm</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{asset('admin/product-label')}}">Hãng sản phẩm</a>
+                        
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{asset('admin/products')}}">
@@ -131,13 +140,19 @@
                         
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-file-invoice-dollar"></i>
                     <span>Hóa đơn</span></a>
+                    <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                        <a class="dropdown-item" href="{{asset('admin/bill-waiting')}}">Đang chờ giải quyết</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{asset('admin/bill-paid')}}">Đã giải quyết</a>
+                        
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{asset('admin/news')}}">
                     <i class="fas fa-fw fa-newspaper"></i>
                     <span>Tin tức</span></a>
                 </li>
