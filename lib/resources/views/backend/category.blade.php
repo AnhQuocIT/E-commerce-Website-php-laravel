@@ -18,6 +18,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+            @include('error.note')
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -67,7 +68,6 @@
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
-                    @include('error.note')
                     <div class="form-group">
                         <label for="txtCateName">Tên loại</label>
                         <input required type="text" name="txtCateName" class="form-control" id="txtCateName">

@@ -1,168 +1,116 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dashboard | Vietpro shop</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/datepicker3.css" rel="stylesheet">
-<link href="css/styles.css" rel="stylesheet">
-<script src="js/lumino.glyphs.js"></script>
-<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-<script src="js/jquery-1.11.1.min.js"></script>
-</head>
-<body>
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Vietpro Admin</a>
-				<ul class="user-menu">
-					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-							
-		</div><!-- /.container-fluid -->
-	</nav>
-		
-	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-		<ul class="nav menu">
-			<li role="presentation" class="divider"></li>
-			<li><a href="#"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Trang chủ</a></li>
-			<li class="active"><a href="#"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Sản phẩm</a></li>
-			<li><a href="#"><svg class="glyph stroked notepad "><use xlink:href="#stroked-notepad"/></svg> Danh mục</a></li>
-			<li role="presentation" class="divider"></li>
-		</ul>
-		
-	</div><!--/.sidebar-->
-		
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">Sản phẩm</h1>
-			</div>
-		</div><!--/.row-->
-		
-		<div class="row">
-			<div class="col-xs-12 col-md-12 col-lg-12">
-				
-				<div class="panel panel-primary">
-					<div class="panel-heading">Sửa sản phẩm</div>
-					<div class="panel-body">
-						<form method="post" enctype="multipart/form-data">
-							<div class="row" style="margin-bottom:40px">
-								<div class="col-xs-8">
-									<div class="form-group" >
-										<label>Tên sản phẩm</label>
-										<input required type="text" name="name" class="form-control">
-									</div>
-									<div class="form-group" >
-										<label>Giá sản phẩm</label>
-										<input required type="number" name="price" class="form-control">
-									</div>
-									<div class="form-group" >
-										<label>Ảnh sản phẩm</label>
-										<input id="img" type="file" name="img" class="form-control hidden" onchange="changeImg(this)">
-					                    <img id="avatar" class="thumbnail" width="300px" src="img/iphone7-plus-black-select-2016.jpg">
-									</div>
-									<div class="form-group" >
-										<label>Phụ kiện</label>
-										<input required type="text" name="accessories" class="form-control">
-									</div>
-									<div class="form-group" >
-										<label>Bảo hành</label>
-										<input required type="text" name="warranty" class="form-control">
-									</div>
-									<div class="form-group" >
-										<label>Khuyến mãi</label>
-										<input required type="text" name="promotion" class="form-control">
-									</div>
-									<div class="form-group" >
-										<label>Tình trạng</label>
-										<input required type="text" name="condition" class="form-control">
-									</div>
-									<div class="form-group" >
-										<label>Trạng thái</label>
-										<select required name="status" class="form-control">
-											<option value="1">Còn hàng</option>
-											<option value="0">Hết hàng</option>
-					                    </select>
-									</div>
-									<div class="form-group" >
-										<label>Miêu tả</label>
-										<textarea required name="description"></textarea>
-									</div>
-									<div class="form-group" >
-										<label>Danh mục</label>
-										<select required name="cate" class="form-control">
-											<option value="1">iPhone</option>
-											<option value="2">Samsung</option>
-											<option value="3">Nokia</option>
-											<option value="4">HTC</option>
-											<option value="5">LG</option>
-											<option value="6">Sony</option>
-					                    </select>
-									</div>
-									<div class="form-group" >
-										<label>Sản phẩm nổi bật</label><br>
-										Có: <input type="radio" name="featured" value="1">
-										Không: <input type="radio" checked name="featured" value="0">
-									</div>
-									<input type="submit" name="submit" value="Thêm" class="btn btn-primary">
-									<a href="#" class="btn btn-danger">Hủy bỏ</a>
-								</div>
-							</div>
-						</form>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-	</div>	<!--/.main-->
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script>
-		$('#calendar').datepicker({
-		});
-		!function ($) {
-		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
-		        $(this).find('em:first').toggleClass("glyphicon-minus");      
-		    }); 
-		    $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-		}(window.jQuery);
+@extends('backend.master')
+@section('title','Products')
+@section('main')
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{asset('admin/home')}}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{asset('admin/products')}}">Products</a>
+        </li>
+        <li class="breadcrumb-item active">Edit</li>
+    </ol>
 
-		$(window).on('resize', function () {
-		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function () {
-		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-		});
-		function changeImg(input){
-		    //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
-		    if(input.files && input.files[0]){
-		        var reader = new FileReader();
-		        //Sự kiện file đã được load vào website
-		        reader.onload = function(e){
-		            //Thay đổi đường dẫn ảnh
-		            $('#avatar').attr('src',e.target.result);
-		        }
-		        reader.readAsDataURL(input.files[0]);
-		    }
-		}
-		$(document).ready(function() {
-		    $('#avatar').click(function(){
-		        $('#img').click();
-		    });
-		});
-	</script>	
-</body>
+		
+    <div class="card mb3">
+        <div class="card-header">
+            <i class="fas fa-edit"></i>
+            Chỉnh sửa sản phẩm "{{$prodById->name}}"
+        </div>
+        @include('error.note')
+        <form method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="card-body">
+                <div class="col-xs-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="txtProdName">Tên sản phẩm</label>
+                        <input value="{{$prodById->name}}" type="text" name="txtProdName" class="form-control" id="txtProdName">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtCate">Danh mục</label>
+                        <select name="txtCate" id="txtCate" class="form-control">
+                        @foreach($typeList as $type)
+                            <option value="{{$type->id}}" @if($prodById->id_type == $type->id) selected @endif>{{$type->name}}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtLabel">Hãng</label>
+                        <select name="txtLabel" id="txtLabel" class="form-control">
+                        @foreach($labelList as $label)
+                            <option value="{{$label->id}}" @if($prodById->label_id == $label->id) selected @endif>{{$label->name}}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtUnitPrice">Giá bán</label>
+                        <div class="input-group mb3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">VNĐ</span>
+                            </div>
+                            <input value="{{$prodById->unit_price}}" type="text" placeholder="ex: 1,000" min="0" data-type="currency" data-type="currency" name="txtUnitPrice" class="form-control" id="txtUnitPrice">
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="txtProPrice">Giá khuyến mãi</label>
+                        <div class="input-group mb3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">VNĐ</span>
+                            </div>
+                            <input value="{{$prodById->promotion_price}}" type="text" placeholder="ex: 1,000" min="0" data-type="currency" data-type="currency" name="txtProPrice" class="form-control" id="txtProPrice">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtProdDesc">Mô tả</label>
+                        <textarea name="txtProdDesc" class="ckeditor" id="txtProdDesc">{{$prodById->description}}</textarea>
+                        <script type="text/javascript">
+                            var editor = CKEDITOR.replace('txtProdDesc',{
+                                language:'en',
+                                filebrowserImageBrowseUrl: '../editor/ckfinder/ckfinder.html?Type=Images',
+                                filebrowserFlashBrowseUrl: '../editor/ckfinder/ckfinder.html?Type=Flash',
+                                filebrowserImageUploadUrl: '../editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                                filebrowserFlashUploadUrl: '../editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+                            });
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <label for="chooseImg">Ảnh sản phẩm</label><br>
+                        <input id="chooseImg" type="file" name="chooseImg" onchange="changeImg(this)">
+                        <img id="avatar" class="thumbnail" width="200px" src="{{asset('/lib/storage/app/image/product/'.$prodById->image)}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="listImg">Ảnh sản phẩm +</label><br>
+                        <input id="listImg" type="file" name="listImg[]" multiple>
+                        @if($listImage != null)
+                            @foreach($listImage as $img)
+                                <img width="15%" height="15%" src="{{asset('/lib/storage/app/image/product/'.$img)}}" alt="{{$prodById->name}}">
+                            @endforeach
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="txtProdOrigin">Xuất sứ</label>
+                        <input value="{{$prodById->origin}}" type="text" name="txtProdOrigin" class="form-control" id="txtProdOrigin">
+                    </div>
+                    <div class="form-group">
+                        <label for="cbProdPromotion">Khuyến mãi?</label>
+                        <input width="50px" name="cbProdPromotion" type="checkbox" @if($prodById->is_sale == true) checked @endif data-toggle="toggle">
+                    </div>
+                    <div class="form-group">
+                        <label for="cbProdNew">Hàng mới?</label>
+                        <input name="cbProdNew" type="checkbox" @if($prodById->new == true) checked @endif data-toggle="toggle">
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <input type="submit" name="submit" value="Save" class="btn btn-primary">
+                <a href="{{asset('admin/products')}}" class="btn btn-danger">Hủy bỏ</a>
+            </div>
+        </form>
+    </div>
+</div>
 
-</html>
+@stop
+

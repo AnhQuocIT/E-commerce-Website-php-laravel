@@ -18,16 +18,18 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                @include('error.note')
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Tên sản phẩm</th>
                             <th>Danh mục</th>
+                            <th>Hãng</th>
                             <th>Giá bán</th>
                             <th>Giá khuyến mãi</th>
                             <th>Ảnh sản phẩm</th>
-                            <th width="20%"></th>
+                            <th width="15%"></th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -35,6 +37,7 @@
                             <th>ID</th>
                             <th>Tên sản phẩm</th>
                             <th>Danh mục</th>
+                            <th>Hãng</th>
                             <th>Giá bán</th>
                             <th>Giá khuyến mãi</th>
                             <th>Ảnh sản phẩm</th>
@@ -42,18 +45,21 @@
                         </tr>
                     </tfoot>
                     <tbody>
+                    @foreach($prodList as $prod)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
+                            <td>{{$prod->id}}</td>
+                            <td>{{$prod->name}}</td>
+                            <td>{{$prod->typeName}}</td>
+                            <td>{{$prod->labelName}}</td>
+                            <td>{{number_format($prod->unit_price,0,',','.')}} VNĐ</td>
+                            <td>{{number_format($prod->promotion_price,0,',','.')}} VNĐ</td>
+                            <td><img width="200px" src="{{asset('lib/storage/app/image/product/'.$prod->image)}}" alt="{{$prod->name}}" class="thumbnail"></td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
-                                <a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xóa</a>
+                                <a href="{{asset('admin/products/edit/'.$prod->id)}}" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
+                                <a href="{{asset('admin/products/delete/'.$prod->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xóa</a>
                             </td>
                         </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -66,10 +72,11 @@
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-dialog-scrollable modal-xl">
         <div class="modal-content">
-            <form action="#" method="post" id="productForm" accept-charset="utf-8">
+            <form method="post" id="productForm" accept-charset="utf-8" enctype="multipart/form-data">
+            {{ csrf_field() }}
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Sản phẩm</h4>
+                    <h4 class="modal-title">Thêm mới sản phẩm</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- Modal body -->
@@ -81,10 +88,17 @@
                     <div class="form-group">
                         <label for="txtCate">Danh mục</label>
                         <select name="txtCate" id="txtCate" class="form-control">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
+                        @foreach($typeList as $type)
+                            <option value="{{$type->id}}">{{$type->name}}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtLabel">Hãng</label>
+                        <select name="txtLabel" id="txtLabel" class="form-control">
+                        @foreach($labelList as $label)
+                            <option value="{{$label->id}}">{{$label->name}}</option>
+                        @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -93,7 +107,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">VNĐ</span>
                             </div>
-                            <input type=text placeholder="ex: 1,000" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" min="0" data-type="currency" data-type="currency" name="txtUnitPrice" class="form-control" id="txtUnitPrice">
+                            <input type="text" placeholder="ex: 1,000" min="0" data-type="currency" data-type="currency" name="txtUnitPrice" class="form-control" id="txtUnitPrice">
                         </div>
                         
                     </div>
@@ -103,28 +117,42 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">VNĐ</span>
                             </div>
-                            <input type="text" placeholder="ex: 1,000" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" min="0" data-type="currency" data-type="currency" name="txtProPrice" class="form-control" id="txtProPrice">
+                            <input type="text" placeholder="ex: 1,000" min="0" data-type="currency" data-type="currency" name="txtProPrice" class="form-control" id="txtProPrice">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtProdDesc">Mô tả</label>
-                        <textarea type="text" rows="3" name="txtProdDesc" class="form-control" id="txtProdDesc"></textarea>
+                        <textarea name="txtProdDesc" class="ckeditor" id="txtProdDesc"></textarea>
+                        <script type="text/javascript">
+                            var editor = CKEDITOR.replace('txtProdDesc',{
+                                language:'en',
+                                filebrowserImageBrowseUrl: '../editor/ckfinder/ckfinder.html?Type=Images',
+                                filebrowserFlashBrowseUrl: '../editor/ckfinder/ckfinder.html?Type=Flash',
+                                filebrowserImageUploadUrl: '../editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                                filebrowserFlashUploadUrl: '../editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+                            });
+                        </script>
                     </div>
                     <div class="form-group">
-                        <label for="txtCateImg">Ảnh sản phẩm</label>
-                        <input type="file" name="txtCateImg" class="form-control-file" id="txtCateImg">
+                        <label for="chooseImg">Ảnh sản phẩm</label><br>
+                        <input required id="chooseImg" type="file" name="chooseImg" onchange="changeImg(this)">
+					    <img id="avatar" class="thumbnail" width="200px" src="../backend/img/choose-image.png">
+                    </div>
+                    <div class="form-group">
+                        <label for="listImg">Ảnh sản phẩm +</label><br>
+                        <input id="listImg" type="file" name="listImg[]" multiple>
                     </div>
                     <div class="form-group">
                         <label for="txtProdOrigin">Xuất sứ</label>
-                        <input type="text" name="txtProdOrigin" class="form-control" id="txtProdOrigin">
+                        <input value="Hàn quốc" type="text" name="txtProdOrigin" class="form-control" id="txtProdOrigin">
                     </div>
                     <div class="form-group">
-                        <label for="txtProdOrigin">Khuyến mãi?</label>
-                        <input type="checkbox" checked data-toggle="toggle">
+                        <label for="cbProdPromotion">Khuyến mãi?</label>
+                        <input name="cbProdPromotion" type="checkbox" checked data-toggle="toggle">
                     </div>
                     <div class="form-group">
-                        <label for="txtProdOrigin">Hàng mới?</label>
-                        <input type="checkbox" checked data-toggle="toggle">
+                        <label for="cbProdNew">Hàng mới?</label>
+                        <input name="cbProdNew" type="checkbox" checked data-toggle="toggle">
                     </div>
                 </div>
                 <!-- Modal footer -->

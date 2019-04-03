@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('title','Guests')
+@section('title','Customers')
 @section('main')
 <div class="container-fluid">
     <!-- Breadcrumbs-->
@@ -7,13 +7,13 @@
         <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Guest</li>
+        <li class="breadcrumb-item active">Customers</li>
     </ol>
     <!-- DataTables Example -->
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
-            Danh sách khách vãn lai
+            Danh sách khách hàng
             <!-- <a style="float: right;" href="#" data-toggle="modal" data-target="#myModal" class="btn btn-success"><i class="fas fa-folder-plus"></i> Thêm mới danh mục</a> -->
         </div>
         <div class="card-body">
@@ -40,17 +40,25 @@
                         </tr>
                     </tfoot>
                     <tbody>
+                        @foreach($guestList as $guest)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Tiger Nixon</td>
+                            <td>{{$guest->name}}</td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
-                                <a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xóa</a>
+                                @if($guest->gender == true)
+                                    Nam
+                                @else
+                                    Nữ
+                                @endif
+                            </td>
+                            <td>{{$guest->email}}</td>
+                            <td>{{$guest->address}}</td>
+                            <td>{{$guest->phone_number}}</td>
+                            <td>
+                                <a href="{{asset('admin/customer/edit/'.$guest->id)}}" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
+                                <a href="{{asset('admin/customer/delete/.$guest->id')}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xóa</a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -59,55 +67,4 @@
     </div>
 </div>
 <!-- /.container-fluid -->
-<!-- The Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form action="#" method="post" accept-charset="utf-8">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Khách vãn lai</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="txtGuestName">Tên khách hàng</label>
-                        <input type="text" name="txtGuestName" class="form-control" id="txtGuestName">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtGuestSex">Giới tính</label>
-                        &nbsp;&nbsp;
-                        <div class="form-check-inline">
-                          <label class="form-check-label">
-                            <input type="radio" name="txtGuestSex" class="form-check-input" id="txtGuestSex">Nam
-                          </label>
-                          &nbsp;&nbsp;
-                          <label class="form-check-label">
-                            <input type="radio" name="txtGuestSex" class="form-check-input" id="txtGuestSex">Nữ
-                          </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtGuestEmail">Email</label>
-                        <input type="text" name="txtGuestEmail" class="form-control" id="txtGuestEmail">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtGuestAddress">Địa chỉ</label>
-                        <input type="text" name="txtGuestAddress" class="form-control" id="txtGuestAddress">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtGuestPhone">Điện thoại</label>
-                        <input type="text" name="txtGuestPhone" class="form-control" id="txtGuestPhone">
-                    </div>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" >Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 @stop

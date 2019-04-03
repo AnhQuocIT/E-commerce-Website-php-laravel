@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 class NewsController extends Controller
 {
     public function getNews(){
-    	return view('backend.news');
+        // return view('backend.news');
+        return view('backend.404');
     }
 }
