@@ -20,7 +20,7 @@ class ProductController extends Controller
                 ->join('type_products','products.id_type','=','type_products.id')
                 ->join('label_products','products.label_id','=','label_products.id')
                 ->select('products.*','type_products.name as typeName','label_products.name as labelName')
-                ->orderBy('products.id','desc')
+                ->orderBy('products.created_at','asc')
                 ->get();
         $typeList =  ProductType::all();
         $labelList = label_products::all();
@@ -56,8 +56,9 @@ class ProductController extends Controller
         $product->slug              = str_slug($request->txtProdName);
         $product->id_type           = $request->txtCate;
         $product->label_id          = $request->txtLabel;
-        $product->description       = $request->txtProdDesc;
+        $product->description       = strip_tags($request->txtProdDesc);
         $product->is_sale           = $sale;
+        $product->miniDesc          = $request->txtMiniDesc;
         $product->unit_price        = (double)str_replace(",","",$request->txtUnitPrice);
         $product->promotion_price   = (double)str_replace(",","",$request->txtProPrice);
         $product->image             = $img;
@@ -91,8 +92,10 @@ class ProductController extends Controller
         if($request->hasfile('listImg'))
          {
             $listImage = json_decode($product->image_list,true);
-            foreach($listImage as $imgs){
-                Storage::delete('image/product/'.$imgs);
+            if($listImage != null){
+                foreach($listImage as $imgs){
+                    Storage::delete('image/product/'.$imgs);
+                }
             }
             foreach($request->file('listImg') as $image)
             {
@@ -119,8 +122,9 @@ class ProductController extends Controller
         $product->slug              = str_slug($request->txtProdName);
         $product->id_type           = $request->txtCate;
         $product->label_id          = $request->txtLabel;
-        $product->description       = $request->txtProdDesc;
+        $product->description       = strip_tags($request->txtProdDesc);
         $product->is_sale           = $sale;
+        $product->miniDesc          = $request->txtMiniDesc;
         $product->unit_price        = (double)str_replace(",","",$request->txtUnitPrice);
         $product->promotion_price   = (double)str_replace(",","",$request->txtProPrice);
         $product->image             = $img;

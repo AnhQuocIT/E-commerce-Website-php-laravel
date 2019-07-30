@@ -121,6 +121,10 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="txtMiniDesc">Mô tả sơ lược</label>
+                        <textarea name="txtMiniDesc" rows="4" class="form-control" id="txtMiniDesc"></textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="txtProdDesc">Mô tả</label>
                         <textarea name="txtProdDesc" class="ckeditor" id="txtProdDesc"></textarea>
                         <script type="text/javascript">
@@ -140,7 +144,7 @@
                     </div>
                     <div class="form-group">
                         <label for="listImg">Ảnh sản phẩm +</label><br>
-                        <input id="listImg" type="file" name="listImg[]" multiple>
+                        <input required id="listImg" type="file" name="listImg[]" multiple>
                     </div>
                     <div class="form-group">
                         <label for="txtProdOrigin">Xuất sứ</label>

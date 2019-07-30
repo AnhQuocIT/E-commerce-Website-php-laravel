@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ProductType;
 use App\Models\label_products;
+use App\Models\Product;
 use App\Http\Requests\AddProdTypeRequest;
 use App\Http\Requests\EditProdTypeRequest;
 use App\Http\Requests\AddProdLabelRequest;
@@ -54,10 +55,15 @@ class CategoryController extends Controller
     }
 
     public function getDeleteCategory($id){
-        $prodType = ProductType::find($id);
-        Storage::delete('image/productType/'.$prodType->image);
-        ProductType::destroy($id);
-        return back();
+        $prodByType =  Product::where('id_type',$id)->count();
+        if($prodByType == 0){
+            $prodType = ProductType::find($id);
+            Storage::delete('image/productType/'.$prodType->image);
+            $delete = ProductType::destroy($id);
+            return back();
+        } else {
+            return redirect()->back()->with('fail','Không thể xóa vì có sản phẩm liên quan!');
+        }
     }
 
 
@@ -101,9 +107,14 @@ class CategoryController extends Controller
     }
 
     public function getDeleteLabelProduct($id){
-        $prodLabel = label_products::find($id);
-        Storage::delete('image/productLabel/'.$prodLabel->image);
-        label_products::destroy($id);
-        return back();
+        $prodByLabel =  Product::where('label_id',$id)->count();
+        if($prodByLabel == 0){
+            $prodLabel = label_products::find($id);
+            Storage::delete('image/productLabel/'.$prodLabel->image);
+            label_products::destroy($id);
+            return back();
+        } else {
+            return redirect()->back()->with('fail','Không thể xóa vì có sản phẩm liên quan!');
+        }
     }
 }

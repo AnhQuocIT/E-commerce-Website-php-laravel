@@ -49,7 +49,7 @@
                             <td>{{number_format($bill->total,0,',','.')}} VNĐ</td>
                             <td>{{$bill->payment}}</td>
                             <td>{{$bill->note}}</td>
-                            <td><a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary"><i class="fas fa-check"></i> Thanh toán</a></td>
+                            <td><a href="{{asset('admin/bill-waiting/report/'.$bill->id)}}" class="btn btn-primary"><i class="fas fa-check"></i> Thanh toán</a></td>
                             <td>
                                 <a href="{{asset('admin/bill-waiting/detail/'.$bill->id)}}" class="btn btn-warning"><i class="fas fa-eye"></i> Xem</a>
                                 <a href="{{asset('admin/bill-waiting/delete/'.$bill->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xóa</a>

@@ -20,6 +20,7 @@
 */
 
 require __DIR__.'/lib/bootstrap/autoload.php';
+// require __DIR__.'/../../lib/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ require __DIR__.'/lib/bootstrap/autoload.php';
 */
 
 $app = require_once __DIR__.'/lib/bootstrap/app.php';
+// $app = require_once __DIR__.'/../../lib/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------

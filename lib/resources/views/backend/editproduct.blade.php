@@ -64,6 +64,10 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="txtMiniDesc">Mô tả sơ lược</label>
+                        <textarea name="txtMiniDesc" rows="4" class="form-control" id="txtMiniDesc">{{$prodById->miniDesc}}</textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="txtProdDesc">Mô tả</label>
                         <textarea name="txtProdDesc" class="ckeditor" id="txtProdDesc">{{$prodById->description}}</textarea>
                         <script type="text/javascript">

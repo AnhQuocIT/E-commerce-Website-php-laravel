@@ -100,7 +100,7 @@
                         <a class="dropdown-item" href="blank.html">Blank Page</a>
                     </div>
                 </li> -->
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-fw fa-tv"></i>
                         <span>Giao diện</span>
@@ -108,7 +108,7 @@
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                         <a class="dropdown-item" href="{{asset('admin/slide')}}">Slide - Banner</a>
                     </div>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="{{asset('admin/category')}}">
                     <i class="fas fa-fw fa-list-ul"></i>
@@ -152,11 +152,11 @@
                         
                     </div>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="{{asset('admin/news')}}">
                     <i class="fas fa-fw fa-newspaper"></i>
                     <span>Tin tức</span></a>
-                </li>
+                </li> -->
             </ul>
             <div id="content-wrapper">
                 <!-- main -->

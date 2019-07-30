@@ -55,7 +55,7 @@
                             <td>{{$guest->phone_number}}</td>
                             <td>
                                 <a href="{{asset('admin/customer/edit/'.$guest->id)}}" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
-                                <a href="{{asset('admin/customer/delete/.$guest->id')}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xóa</a>
+                                <a href="{{asset('admin/customer/delete/'.$guest->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xóa</a>
                             </td>
                         </tr>
                         @endforeach

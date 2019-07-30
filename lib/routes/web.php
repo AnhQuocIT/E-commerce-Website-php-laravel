@@ -11,10 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'UserController@getHome');
+Route::get('details/{id}/{slug}','UserController@getDetail');
+Route::get('categories/{id}/{slug}','UserController@getCategory');
+Route::get('labels/{id}/{slug}','UserController@getLabel');
+Route::get('search','UserController@getSearch');
+Route::get('contact','UserController@getContact');
 
+Route::get('log-in','UserController@getUserLogin');
+Route::post('log-in','UserController@postUserLogin');
+Route::post('sign-in','UserController@postUserSignin');
+Route::get('log-out','UserController@getUserLogout');
+
+Route::group(['prefix'=>'cart'],function(){
+	Route::get('add/{id}','CartController@getAddCart');
+	Route::get('show','CartController@getShowCart');
+	Route::get('delete/{id}','CartController@getDeleteCart');
+	Route::get('update','CartController@getUpdateCart');
+
+	Route::get('checkout','CartController@getCheckoutCart');
+	Route::post('checkout','CartController@postCheckoutCart');
+});
 Route::group(['namespace'=>'Admin'],function(){
 	
 	Route::group(['prefix'=>'admin/login','middleware'=>'CheckLogedIn'],function(){
@@ -91,6 +108,8 @@ Route::group(['namespace'=>'Admin'],function(){
 			Route::get('deleteDetail/{id}','BillController@getDeleteDetail');
 
 			Route::get('delete/{id}','BillController@getDeleteBill');
+
+			Route::get('report/{id}','BillController@getReportPDF');
 		});
 
 		Route::group(['prefix'=>'bill-paid'], function(){
@@ -109,4 +128,3 @@ Route::group(['namespace'=>'Admin'],function(){
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

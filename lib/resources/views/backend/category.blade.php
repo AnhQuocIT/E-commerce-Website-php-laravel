@@ -19,6 +19,9 @@
         <div class="card-body">
             <div class="table-responsive">
             @include('error.note')
+            @if(Session::has('fail'))
+                <div class="alert alert-danger">{{Session::get('fail')}}</div>
+            @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
