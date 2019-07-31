@@ -22,10 +22,16 @@
                         <h4>Forgot your password?</h4>
                         <p>Enter your email address and we will send you instructions on how to reset your password.</p>
                     </div>
-                    <form method="post">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <form method="post" action="{{ route('password.email') }}">
+                        {{ csrf_field() }}
                         <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Enter email address" required="required" autofocus="autofocus">
+                            <div class="form-label-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Enter email address" required="required" autofocus="autofocus" value="{{ old('inputEmail') }}">
                                 <label for="inputEmail">Enter email address</label>
                             </div>
                         </div>
