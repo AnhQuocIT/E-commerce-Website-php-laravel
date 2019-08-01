@@ -123,9 +123,22 @@ Route::group(['namespace'=>'Admin'],function(){
 		Route::group(['prefix'=>'news'], function(){
 			Route::get('/','NewsController@getNews');
 		});
+
+		Route::group(['prefix'=>'admin-control'], function(){
+			Route::get('info','AdminController@getAdminInfo');
+			
+			Route::get('list','AdminController@getListAdmin');
+
+			Route::get('register','AdminController@getAddAdmin');
+			Route::post('register','AdminController@postAddAdmin');
+
+			Route::get('edit/{id}','AdminController@getEditAdmin');
+			Route::post('edit/{id}','AdminController@postEditAdmin');
+		});
 	});
 
 });
+
 //Clear Cache facade value:
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('cache:clear');

@@ -37,15 +37,14 @@
                         <div class="form-group">
                             <div class="checkbox">
                                 <label>
-                                <input type="checkbox" name="remember" value="remember-me">
-                                Remember Password
+                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                                 </label>
                             </div>
                         </div>
                         <input class="btn btn-primary btn-block" type="submit" name="submit" value="Login">
                     </form>
                     <div class="text-center">
-                        <a class="d-block small" href="{{asset('admin/forgot-password')}}">Forgot Password?</a>
+                        <a class="d-block small" href="{{ route('password.request') }}">Forgot Password?</a>
                     </div>
                 </div>
             </div>

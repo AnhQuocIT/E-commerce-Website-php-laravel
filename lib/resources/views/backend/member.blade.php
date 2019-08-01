@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('title','Members')
+@section('title','Khách thành viên')
 @section('main')
 <div class="container-fluid">
     <!-- Breadcrumbs-->
