@@ -1,70 +1,74 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<style>
-#navbar{
-	margin-top:50px;}
-#tbl-first-row{
-	font-weight:bold;}	
-#logout{
-	padding-right:30px;}	
-</style>
-</head>
-<body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <base href="{{asset('public/backend')}}/">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
+        <title>Admin - Infomation</title>
+        <!-- Custom fonts for this template-->
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <!-- Custom styles for this template-->
+        <link href="css/sb-admin.css" rel="stylesheet">
+    </head>
 
-<div class="container">
-    <div id="navbar" class="row">
-    	<div class="col-sm-12">
-        	<nav class="navbar navbar-default">
-  				<div class="container-fluid">
-                	<ul class="nav navbar-nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Users</a></li>
-                        <li><a href="#">Add user</a></li>
-                	</ul>
-                    <p id="logout" class="navbar-text navbar-right"><a class="navbar-link" href="#">Logout</a></p>
-                </div>
-            </nav>
+<body class="bg-dark">
+
+  <div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Thông tin tài khoản quản trị</div>
+      <div class="card-body">
+        @if(count($errors)>0)
+            <div class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    {{$error}} <br>
+                @endforeach
+            </div>
+        @endif
+        <form method="post" accept-charset="utf-8" enctype="multipart/form-data">
+          {{ csrf_field() }}
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="text" id="name" name="name" class="form-control" placeholder="Họ tên" required="required" value="{{ $adminById->name }}">
+              <label for="name">Họ Tên</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Địa chỉ email" required="required" value="{{ $adminById->email }}">
+              <label for="inputEmail">Email</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <select name="level" id="level" class="form-control" required>
+                <option value="admin" {{ $adminById->level === 'admin' ? 'selected' : '' }}>Admin</option>
+                <option value="mod" {{ $adminById->level === 'mod' ? 'selected' : '' }}>Mod</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <a class="d-block small" href="{{ route('password.request') }}"><h5>Đổi mật khẩu?</h5></a>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" href="">Lưu thay đổi</button>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="javascript:history.back()">Quay về</a>
         </div>
+      </div>
     </div>
-    <div class="row">
-    	<div class="col-sm-6">
-        	<div class="alert alert-danger">User exist!</div>
-        	<form method="post">
-            	<div class="form-group">
-                	<label>Fullname</label>
-                    <input type="text" name="full" class="form-control" placeholder="Fullname" value="Nguyễn Văn A" required />
-                </div>
-                <div class="form-group">
-                	<label>Username</label>
-                    <input type="text" name="user" class="form-control" placeholder="Username" value="nguyenvana" required />
-                </div>
-                <div class="form-group">
-                	<label>Password</label>
-                    <input type="password" name="pass" class="form-control" placeholder="Password" value="123456" required />
-                </div>
-                <div class="form-group">
-                	<label>Email</label>
-                    <input type="text" name="mail" class="form-control" placeholder="Email"  value="nguyenvana@gmail.com" required />
-                </div>
-                <div class="form-group">
-                	<label>Level</label>
-                    <select name="level" class="form-control">
-                    	<option value="1">Admin</option>
-                        <option value="2">Mod</option>
-                        <option value="3" selected="selected">User</option>
-                    </select>
-                </div>
-                <input type="submit" name="submit" value="Sửa" class="btn btn-primary" />
-            </form>
-        </div>
-    </div>
-</div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 </body>
+
 </html>

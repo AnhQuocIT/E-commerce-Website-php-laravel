@@ -64,11 +64,13 @@
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user-circle fa-fw"></i>
-                    {{Auth::user()->full_name}}
+                    {{Auth::user()->name}}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">Hồ sơ</a>
-                        <a class="dropdown-item" href="#">Quản lý quản trị</a>
+                        <a class="dropdown-item" href="{{ asset('admin/admin-control/edit/'.Auth::user()->id)}}">Hồ sơ</a>
+                        @if(Auth::user()->level == 'admin')
+                        <a class="dropdown-item" href="{{ asset('admin/admin-control/list')}}">Quản lý quản trị</a>
+                        @endif
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Đăng xuất</a>
                     </div>
@@ -100,7 +102,7 @@
                         <a class="dropdown-item" href="blank.html">Blank Page</a>
                     </div>
                 </li> -->
-                <!-- <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-fw fa-tv"></i>
                         <span>Giao diện</span>
@@ -108,12 +110,8 @@
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                         <a class="dropdown-item" href="{{asset('admin/slide')}}">Slide - Banner</a>
                     </div>
-                </li> -->
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="{{asset('admin/category')}}">
-                    <i class="fas fa-fw fa-list-ul"></i>
-                    <span>Danh mục sản phẩm</span></a>
-                </li> -->
+                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-list-ul"></i>

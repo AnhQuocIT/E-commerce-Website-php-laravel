@@ -8,7 +8,7 @@ class BillDetail extends Model
 {
     protected $table = "bill_detail";
 
-    pulbic function product(){
+    public function product(){
     	return $this->belongsTo('App\Product','id_product','id');
     }
 
