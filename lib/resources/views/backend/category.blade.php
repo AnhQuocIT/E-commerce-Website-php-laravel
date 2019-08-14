@@ -5,7 +5,7 @@
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
+            <a href="{{asset('admin/home')}}">Dashboard</a>
         </li>
         <li class="breadcrumb-item active">Product Types</li>
     </ol>
@@ -27,6 +27,7 @@
                         <tr>
                             <th width="35%">Tên loại</th>
                             <th>Hình ảnh</th>
+                            <th>Danh mục con</th>
                             <th width="20%"></th>
                         </tr>
                     </thead>
@@ -34,6 +35,7 @@
                         <tr>
                             <th>Tên loại</th>
                             <th>Hình ảnh</th>
+                            <th>Danh mục con</th>
                             <th></th>
                         </tr>
                     </tfoot>
@@ -43,6 +45,9 @@
                             <td>{{$prodType->name}}</td>
                             <td>
                                 <img width="200px" src="{{asset('lib/storage/app/image/productType/'.$prodType->image)}}" alt="{{$prodType->name}}" class="thumbnail">
+                            </td>
+                            <td>
+                                <a href="{{asset('admin/product-type/sub-menu/'.$prodType->id)}}" class="btn btn-info"><i class="fas fa-stream"></i>Xem</a>
                             </td>
                             <td>
                                 <a href="{{asset('admin/product-type/edit/'.$prodType->id)}}" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
@@ -77,7 +82,7 @@
                     </div>
                     <div class="form-group">
                         <label for="txtCateImg">Hình ảnh</label><br>
-                        <input required id="chooseImg" type="file" name="chooseImg" onchange="changeImg(this)">
+                        <input id="chooseImg" type="file" name="chooseImg" onchange="changeImg(this)">
 					    <img id="avatar" class="thumbnail" width="200px" src="../backend/img/choose-image.png">
                     </div>
                 </div>

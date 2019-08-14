@@ -66,8 +66,31 @@ class CategoryController extends Controller
         }
     }
 
+    public function getSubCategory($id){
+        $data["subMenu"] = ProductType::where('parent_id',$id)->get();
+        $data["parentId"] = $id;
+        return view('backend.sub_category', $data);
+    }
 
+    public function postSubCategory(AddProdTypeRequest $request){
+        $filename = null;
+        $prodType = new ProductType;
+        $prodType->name = $request->txtCateName;
+        $prodType->slug = str_slug($request->txtCateName);
+        if($request->chooseImg != null){
+            $filename = $request->chooseImg->getClientOriginalName();
+            $request->chooseImg->storeAs('image/productType',$filename);
+        }
+        $prodType->image = $filename;
+        $prodType->parent_id = $request->parentId;
 
+        $prodType->save();
+        
+
+        return redirect()->intended('admin/product-type');
+    }
+
+    //Labels
     public function getLabelProduct(){
         $data['productLabelList'] = label_products::all();
     	return view('backend.label_product',$data);

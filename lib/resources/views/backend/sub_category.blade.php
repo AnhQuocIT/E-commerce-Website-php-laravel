@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('title','Label')
+@section('title','Product Types')
 @section('main')
 <div class="container-fluid">
     <!-- Breadcrumbs-->
@@ -7,45 +7,49 @@
         <li class="breadcrumb-item">
             <a href="{{asset('admin/home')}}">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Label</li>
+        <li class="breadcrumb-item">
+            <a href="{{asset('admin/product-type')}}">Product Types</a>
+        </li>
+        <li class="breadcrumb-item active">Sub Menu</li>
     </ol>
     <!-- DataTables Example -->
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
-            Danh sách hãng sản phẩm
-            <a style="float: right;" href="#" data-toggle="modal" data-target="#myModal" class="btn btn-success"><i class="fas fa-folder-plus"></i> Thêm mới hãng</a>
+            Danh sách danh mục sản phẩm
+            <a style="float: right;" href="#" data-toggle="modal" data-target="#myModal" class="btn btn-success"><i class="fas fa-folder-plus"></i> Thêm mới danh mục con</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
+            @include('error.note')
             @if(Session::has('fail'))
                 <div class="alert alert-danger">{{Session::get('fail')}}</div>
             @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th width="35%">Tên hãng</th>
+                            <th width="35%">Tên loại</th>
                             <th>Hình ảnh</th>
                             <th width="20%"></th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Tên hãng</th>
+                            <th>Tên loại</th>
                             <th>Hình ảnh</th>
                             <th></th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach($productLabelList as $prodLabel)
+                        @foreach($subMenu as $item)
                         <tr>
-                        <td>{{$prodLabel->name}}</td>
+                            <td>{{$item->name}}</td>
                             <td>
-                                <img width="200px" src="{{asset('lib/storage/app/image/productLabel/'.$prodLabel->image)}}" alt="{{$prodLabel->name}}" class="thumbnail">
+                                <img width="200px" src="{{asset('lib/storage/app/image/productType/'.$item->image)}}" alt="{{$item->name}}" class="thumbnail">
                             </td>
                             <td>
-                                <a href="{{asset('admin/product-label/edit/'.$prodLabel->id)}}" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
-                                <a href="{{asset('admin/product-label/delete/'.$prodLabel->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xóa</a>
+                                <a href="{{asset('admin/product-type/edit/'.$item->id)}}" class="btn btn-warning"><i class="fas fa-edit"></i> Sửa</a>
+                                <a href="{{asset('admin/product-type/delete/'.$item->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Xóa</a>
                             </td>
                         </tr>
                         @endforeach
@@ -65,21 +69,21 @@
                 {{ csrf_field() }}
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Hãng sản phẩm</h4>
+                    <h4 class="modal-title">Danh mục con</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
-                    @include('error.note')
                     <div class="form-group">
-                        <label for="txtCateName">Tên hãng</label>
-                        <input type="text" name="txtCateName" class="form-control" id="txtCateName">
+                        <label for="txtCateName">Tên loại</label>
+                        <input required type="text" name="txtCateName" class="form-control" id="txtCateName">
                     </div>
                     <div class="form-group">
-                        <label for="txtCateImg">Hình ảnh</label>
-                        <input required id="chooseImg" type="file" name="chooseImg" onchange="changeImg(this)">
+                        <label for="txtCateImg">Hình ảnh</label><br>
+                        <input id="chooseImg" type="file" name="chooseImg" onchange="changeImg(this)">
 					    <img id="avatar" class="thumbnail" width="200px" src="../backend/img/choose-image.png">
                     </div>
+                    <input type="hidden" value="{{$parentId}}" name="parentId" id="parentId" />
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
