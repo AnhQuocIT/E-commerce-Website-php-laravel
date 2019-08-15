@@ -11,6 +11,8 @@ use App\Models\Bill;
 use App\Models\BillDetail;
 use Mail;
 use Auth;
+use Illuminate\Support\Facades\DB;
+
 class CartController extends Controller
 {
     //
@@ -57,24 +59,52 @@ class CartController extends Controller
     }
 
     public function postCheckoutCart(BillRequest $request){
-        if(Auth::guard('customer')->check()){
+         $customerByEmail = DB::table('customer')->select('customer.*')->where('customer.email','like', $request->email)->first();
+         if(Auth::guard('customer')->check()){
             $customer = Customer::find(Auth::guard('customer')->user()->id);
         } else {
-            $this->validate($request,[
-                'email'=>'email|unique:customer,email',
-            ],
-            [
-                'email.email'=>'Không đúng định dạng email!',
-                'email.unique'=>'Tài khoản đã tồn tại!',
-            ]);
-            $customer = new Customer;
-            $customer->name = $request->name;
-            $customer->gender = 1 ;
-            $customer->email = $request->email;
-            $customer->address = $request->address;
-            $customer->phone_number = $request->phone;
-            $customer->is_member = false;
-            $customer->save();
+            if($customerByEmail != null){
+                if($customerByEmail->is_member == true){
+                    $this->validate($request,[
+                        'email'=>'email|unique:customer,email',
+                    ],
+                    [
+                        'email.email'=>'Không đúng định dạng email!',
+                        'email.unique'=>'Email này đã đăng ký thành viên!',
+                    ]);
+                } else {
+                    $this->validate($request,[
+                        'email'=>'email',
+                    ],
+                    [
+                        'email.email'=>'Không đúng định dạng email!',
+                    ]);
+                }
+                $customer = Customer::find($customerByEmail->id);
+                $customer->name = $request->name;
+                $customer->gender = 1 ;
+                $customer->email = $request->email;
+                $customer->address = $request->address;
+                $customer->phone_number = $request->phone;
+                $customer->is_member = false;
+                $customer->save();
+            } else {
+                $this->validate($request,[
+                    'email'=>'email',
+                ],
+                [
+                    'email.email'=>'Không đúng định dạng email!',
+                ]);
+
+                $customer = new Customer;
+                $customer->name = $request->name;
+                $customer->gender = 1 ;
+                $customer->email = $request->email;
+                $customer->address = $request->address;
+                $customer->phone_number = $request->phone;
+                $customer->is_member = false;
+                $customer->save();
+            }
         }
         $bill = new Bill;
         $bill->id_customer = $customer->id;

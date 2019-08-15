@@ -23,6 +23,9 @@ Route::post('log-in','UserController@postUserLogin');
 Route::post('sign-in','UserController@postUserSignin');
 Route::get('log-out','UserController@getUserLogout');
 
+Route::get('user-info/{id}','UserController@getUserInfo');
+Route::post('user-info/{id}','UserController@postUserInfo');
+
 Route::group(['prefix'=>'cart'],function(){
 	Route::get('add/{id}','CartController@getAddCart');
 	Route::get('show','CartController@getShowCart');
@@ -50,6 +53,9 @@ Route::group(['namespace'=>'Admin'],function(){
 			Route::post('edit/{id}','CategoryController@postEditCategory');
 
 			Route::get('delete/{id}','CategoryController@getDeleteCategory');
+
+			Route::get('sub-menu/{id}','CategoryController@getSubCategory');
+			Route::post('sub-menu/{id}','CategoryController@postSubCategory');
 		});
 
 		Route::group(['prefix'=>'product-label'],function(){
