@@ -53,8 +53,6 @@ Route::group(['namespace'=>'Admin'],function(){
 			Route::post('edit/{id}','CategoryController@postEditCategory');
 
 			Route::get('delete/{id}','CategoryController@getDeleteCategory');
-			Route::get('sub-menu/{id}','CategoryController@getSubCategory');
-			Route::post('sub-menu/{id}','CategoryController@postSubCategory');
 		});
 
 		Route::group(['prefix'=>'product-label'],function(){

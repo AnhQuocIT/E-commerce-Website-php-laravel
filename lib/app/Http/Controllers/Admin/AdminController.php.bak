@@ -45,7 +45,7 @@ class AdminController extends Controller
         $admin->name = $request->name;
         $admin->email = $request->inputEmail;
         $admin->level = $request->level;
-        if($request->has('changePass')){
+		if($request->has('changePass')){
             $admin->password = bcrypt($request->password);
         }
         $admin->save();

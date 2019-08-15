@@ -24,15 +24,7 @@ class EditAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'inputEmail'=>'email',
-            'password'=>'confirmed|min:6',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            
+            //
         ];
     }
 }

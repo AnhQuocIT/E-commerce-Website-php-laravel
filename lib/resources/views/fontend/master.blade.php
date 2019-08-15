@@ -89,7 +89,7 @@
                                         <ul class="dropdown-menu">
                                             <li>Xin chào, {{Auth::guard('customer')->user()->name}}</li>
                                             <hr>
-                                            <li><a href="{{asset('/user-info/'.Auth::guard('customer')->user()->id )}}">Hồ sơ</a></li>
+                                            <li><a href="{{asset('/#sale')}}">Hồ sơ</a></li>
                                             <hr>
                                             <li><a href="{{asset('log-out')}}">Đăng xuất</a></li>
                                         </ul>

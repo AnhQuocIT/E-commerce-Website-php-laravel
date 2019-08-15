@@ -117,14 +117,4 @@ class UserController extends Controller
         Auth::guard('customer')->logout();
         return redirect()->intended('/');
     }
-
-	public function getUserInfo($id){
-        $data['cusById'] = Customer::find($id);
-        return view('fontend.user-info', $data);
-    }
-
-    public function postUserInfo(){
-        
-        return redirect()->intended('/');
-    }
 }

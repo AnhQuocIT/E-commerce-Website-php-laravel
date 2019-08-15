@@ -13,6 +13,8 @@
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <!-- Custom styles for this template-->
         <link href="css/sb-admin.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     </head>
 
 <body class="bg-dark">
@@ -50,8 +52,27 @@
               </select>
             </div>
           </div>
-          <div class="form-group">
-            <a class="d-block small" href="{{ route('password.request') }}"><h5>Đổi mật khẩu?</h5></a>
+
+          <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="changePass" name="changePass">
+              <label class="form-check-label" for="changePass">Thay đổi mật khẩu?</label>
+          </div>
+          <br>
+          <div class="form-group pass" style="display:none">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" id="password" name="password" class="form-control" placeholder="Password"  required="required">
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Confirm password"  required="required">
+                  <label for="password_confirmation">Nhập lại password</label>
+                </div>
+              </div>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary btn-block" href="">Lưu thay đổi</button>
         </form>
@@ -68,7 +89,13 @@
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#changePass').click(function(){
+            $(".pass").toggle();
+        });
+    });
+  </script>
 </body>
 
 </html>

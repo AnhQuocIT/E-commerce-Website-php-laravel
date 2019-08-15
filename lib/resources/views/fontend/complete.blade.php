@@ -15,7 +15,7 @@
             </div>
         </section>
         <!--================End Categories Banner Area =================-->
-
+        
         <!--================login Area =================-->
         <section class="emty_cart_area p_100">
             <div class="container">
