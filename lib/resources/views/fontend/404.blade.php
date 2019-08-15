@@ -17,7 +17,7 @@
         <!--================End Categories Banner Area =================-->
         
         <!--================login Area =================-->
-        <section class="error_area p_100">
+        <section class="error_area p_100" id="404Div">
             <div class="container">
                 <div class="error_inner">
                     <h4>404</h4>
@@ -28,4 +28,12 @@
             </div>
         </section>
         <!--================End login Area =================-->
+        <script>
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#404Div').offset().top
+                }, 'slow');
+            });
+        </script>
 @stop

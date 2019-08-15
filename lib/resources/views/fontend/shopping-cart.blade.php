@@ -16,7 +16,7 @@
         <!--================End Categories Banner Area =================-->
         
         <!--================Shopping Cart Area =================-->
-        <section class="shopping_cart_area p_100">
+        <section class="shopping_cart_area p_100" id="cardDiv">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
@@ -124,5 +124,12 @@
                     }
                 );
             }
+
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#cardDiv').offset().top
+                }, 'slow');
+            });
         </script>
  @stop

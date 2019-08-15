@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
+            <a href="{{asset('admin/home')}}">Dashboard</a>
         </li>
         <li class="breadcrumb-item active">Slide</li>
     </ol>
@@ -49,7 +49,7 @@
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
     </div>
 </div>
-<div class="modal" id="myModal">
+<div class="modal" id="myModal" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form method="post" accept-charset="utf-8" enctype="multipart/form-data">

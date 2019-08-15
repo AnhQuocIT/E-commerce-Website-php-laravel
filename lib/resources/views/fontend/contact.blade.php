@@ -16,7 +16,7 @@
         <!--================End Categories Banner Area =================-->
         
         <!--================Contact Area =================-->
-        <section class="contact_area p_100">
+        <section class="contact_area p_100" id="contactDiv">
             <div class="container">
                 <div class="contact_title">
                     <h2>Thông tin chung</h2>
@@ -76,4 +76,12 @@
             </div>
         </section>
         <!--================End Contact Area =================-->
+        <script>
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#contactDiv').offset().top
+                }, 'slow');
+            });
+        </script>
 @stop

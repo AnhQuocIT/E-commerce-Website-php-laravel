@@ -17,7 +17,7 @@
         
         <!--================Categories Product Area =================-->
         
-        <section class="no_sidebar_2column_area">
+        <section class="no_sidebar_2column_area" id="cateDiv">
             <div class="container">
                 <div class="two_column_product">
                     <div class="row">
@@ -58,4 +58,12 @@
             </div>
         </section>
         <!--================End Categories Product Area =================-->
+        <script>
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#cateDiv').offset().top
+                }, 'slow');
+            });
+        </script>
 @stop

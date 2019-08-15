@@ -16,7 +16,7 @@
         <!--================End Categories Banner Area =================-->
         
         <!--================login Area =================-->
-        <section class="login_area p_100">
+        <section class="login_area p_100" id="login">
             <div class="container">
                 <div class="login_inner">
                     <div class="row">
@@ -86,6 +86,14 @@
                     </div>
                 </div>
             </div>
+            <script>
+                $(document).ready(function () {
+                    // Handler for .ready() called.
+                    $('html, body').animate({
+                        scrollTop: $('#login').offset().top
+                    }, 'slow');
+                });
+            </script>
         </section>
         <!--================End login Area =================-->
         @stop

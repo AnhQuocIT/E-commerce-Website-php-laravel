@@ -29,6 +29,7 @@
         <link href="css/style.css" rel="stylesheet">
         <link href="css/responsive.css" rel="stylesheet">
 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -89,7 +90,7 @@
                                         <ul class="dropdown-menu">
                                             <li>Xin chào, {{Auth::guard('customer')->user()->name}}</li>
                                             <hr>
-                                            <li><a href="{{asset('/#sale')}}">Hồ sơ</a></li>
+                                            <li><a href="{{asset('/user-info/'.Auth::guard('customer')->user()->id )}}">Hồ sơ</a></li>
                                             <hr>
                                             <li><a href="{{asset('log-out')}}">Đăng xuất</a></li>
                                         </ul>

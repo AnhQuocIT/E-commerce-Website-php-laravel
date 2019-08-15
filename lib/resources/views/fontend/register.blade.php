@@ -17,7 +17,7 @@
         <!--================End Categories Banner Area =================-->
         
         <!--================Register Area =================-->
-        <section class="register_area p_100">
+        <section class="register_area p_100" id="regDiv">
             <form method="post" accept-charset="utf-8">
             {{ csrf_field() }}
                 <div class="container">
@@ -118,4 +118,12 @@
             </form>
         </section>
         <!--================End Register Area =================-->
+        <script>
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#regDiv').offset().top
+                }, 'slow');
+            });
+        </script>
      @stop

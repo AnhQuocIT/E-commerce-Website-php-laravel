@@ -17,7 +17,7 @@ class CategoryController extends Controller
 {
 
     public function getCategory(){
-    	$data['productTypeList'] = ProductType::all();
+    	$data['productTypeList'] = ProductType::where('parent_id',0)->get();
     	return view('backend.category',$data);
     }
 
@@ -27,6 +27,7 @@ class CategoryController extends Controller
         $prodType->name = $request->txtCateName;
         $prodType->slug = str_slug($request->txtCateName);
         $prodType->image = $filename;
+        $prodType->parent_id = 0;
 
         $prodType->save();
         $request->chooseImg->storeAs('image/productType',$filename);

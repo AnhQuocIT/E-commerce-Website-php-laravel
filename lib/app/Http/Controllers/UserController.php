@@ -85,7 +85,6 @@ class UserController extends Controller
             'name'=>'required',
             'email'=>'required|email|unique:customer,email',
             'address'=>'required',
-            'phone'=>'required|number',
             'pass'=>'required|min:6|max:20',
             'repass' => 'required|same:pass'
         ],
@@ -99,8 +98,6 @@ class UserController extends Controller
             'repass.same'=>'Mật khẩu không giống nhau!',
             'name.required'=>'Vui lòng nhập tên!',
             'address.required'=>'Vui lòng nhập địa chỉ!',
-            'phone.required'=>'Vui lòng nhập số điện thoại!',
-            'phone.number'=>'Vui lòng nhập số điện thoại theo định dạng số!',
         ]);
         $customer = new Customer();
         $customer->name = $request->name;
@@ -123,8 +120,16 @@ class UserController extends Controller
         return view('fontend.user-info', $data);
     }
 
-    public function postUserInfo(){
-        
+    public function postUserInfo(Request $request, $id){
+        $user = Customer::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone_number = $request->phone;
+        $user->address = $request->address;
+        if($request->has('changePass')){
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
         return redirect()->intended('/');
     }
 }

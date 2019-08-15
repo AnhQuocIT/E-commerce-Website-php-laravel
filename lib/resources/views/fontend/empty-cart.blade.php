@@ -16,7 +16,7 @@
         <!--================End Categories Banner Area =================-->
         
         <!--================login Area =================-->
-        <section class="emty_cart_area p_100">
+        <section class="emty_cart_area p_100" id="emptyCartDiv">
             <div class="container">
                 <div class="emty_cart_inner">
                     <i class="icon-handbag icons"></i>
@@ -26,4 +26,12 @@
             </div>
         </section>
         <!--================End login Area =================-->
+        <script>
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#emptyCartDiv').offset().top
+                }, 'slow');
+            });
+        </script>
 @stop

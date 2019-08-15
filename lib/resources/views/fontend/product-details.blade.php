@@ -16,7 +16,7 @@
         <!--================End Categories Banner Area =================-->
         
         <!--================Product Details Area =================-->
-        <section class="product_details_area">
+        <section class="product_details_area" id="detailDiv">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">
@@ -170,4 +170,12 @@
             </div>
         </section>
         <!--================End Our Latest Product Area =================-->
+        <script>
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#detailDiv').offset().top
+                }, 'slow');
+            });
+        </script>
  @stop

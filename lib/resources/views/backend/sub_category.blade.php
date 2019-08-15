@@ -62,7 +62,7 @@
 </div>
 <!-- /.container-fluid -->
 <!-- The Modal -->
-<div class="modal" id="myModal">
+<div class="modal" id="myModal" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form method="post" accept-charset="utf-8" enctype="multipart/form-data">

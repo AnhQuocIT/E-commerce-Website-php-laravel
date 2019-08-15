@@ -16,7 +16,7 @@
         <!--================End Categories Banner Area =================-->
         
         <!--================login Area =================-->
-        <section class="login_area p_100">
+        <section class="login_area p_100" id="infoDiv">
             <div class="container">
                 <div class="login_inner">
                     <div class="row">
@@ -49,15 +49,15 @@
                                     <input class="form-control" type="number" placeholder="Phone" name="phone" value="{{$cusById->phone_number}}">
                                 </div>
                                 <div class="col-lg-12 form-check">
-                                    <input type="checkbox" class="form-check-input" id="enable_change">
+                                    <input type="checkbox" class="form-check-input" id="changePass" name="changePass">
                                     <label for="enable_change">Thay đổi mật khẩu?</label>
                                 </div>
-                                <div id="change_pass" class="col-lg-12 form-group">
+                                <div class="col-lg-12 form-group pass" style="display:none">
                                     <div class="col-lg-12 form-group">
-                                        <input class="form-control" type="password" placeholder="Password" name="pass">
+                                        <input class="form-control" type="password" placeholder="Password" name="password">
                                     </div>
                                     <div class="col-lg-12 form-group">
-                                        <input class="form-control" type="password" placeholder="Re-Password" name="repass">
+                                        <input class="form-control" type="password" placeholder="Re-Password" name="password_confirmation">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 form-group">
@@ -68,6 +68,21 @@
                     </div>
                 </div>
             </div>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $('#changePass').click(function(){
+                        $(".pass").toggle();
+                    });
+                });
+            </script>
         </section>
         <!--================End login Area =================-->
+        <script>
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#infoDiv').offset().top
+                }, 'slow');
+            });
+        </script>
         @stop

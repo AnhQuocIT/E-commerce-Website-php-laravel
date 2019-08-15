@@ -17,7 +17,7 @@
         <!--================End Categories Banner Area =================-->
         
         <!--================login Area =================-->
-        <section class="emty_cart_area p_100">
+        <section class="emty_cart_area p_100" id="completeDiv">
             <div class="container">
                 <div class="alert alert-success">
                     <strong>Quý khách đã đặt hàng thành công!</strong>
@@ -30,4 +30,12 @@
             </div>
         </section>
         <!--================End login Area =================-->
+        <script>
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#completeDiv').offset().top
+                }, 'slow');
+            });
+        </script>
 @stop

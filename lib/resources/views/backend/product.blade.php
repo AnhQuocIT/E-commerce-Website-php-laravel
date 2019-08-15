@@ -5,7 +5,7 @@
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
+            <a href="{{asset('admin/home')}}">Dashboard</a>
         </li>
         <li class="breadcrumb-item active">Products</li>
     </ol>
@@ -69,7 +69,7 @@
 </div>
 <!-- /.container-fluid -->
 <!-- The Modal -->
-<div class="modal" id="myModal">
+<div class="modal" id="myModal" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-scrollable modal-xl">
         <div class="modal-content">
             <form method="post" id="productForm" accept-charset="utf-8" enctype="multipart/form-data">
